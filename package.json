@@ -1,0 +1,39 @@
+{
+  "name": "eccomers-admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@auth/mongodb-adapter": "^3.4.1",
+    "@aws-sdk/client-s3": "^3.620.0",
+    "autoprefixer": "^10.4.19",
+    "axios": "^1.7.2",
+    "fs": "^0.0.1-security",
+    "mime-types": "^2.1.35",
+    "mongodb": "^6.8.0",
+    "moongose": "^1.0.0",
+    "multer": "^1.4.5-lts.1",
+    "multiparty": "^4.2.3",
+    "next": "14.2.5",
+    "next-auth": "^4.24.7",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-redux": "^9.1.2",
+    "react-sortablejs": "^6.1.4",
+    "react-spinners": "^0.14.1",
+    "react-sweetalert2-redux": "^0.1.4",
+    "sweetalert2": "^11.12.3",
+    "tailwind": "^4.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
+    "postcss": "^8.4.40",
+    "tailwindcss": "^3.4.7"
+  }
+}

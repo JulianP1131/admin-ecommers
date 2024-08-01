@@ -1,0 +1,70 @@
+/* Importando las directivas base de Tailwind CSS*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos aplicacdos a imagenes */
+img{
+    max-height: 100%
+}
+
+/*Estilos aplicados a los elementos input y textarea:*/
+input, textarea, select, select {
+    @apply border-2 border-gray-300 rounded-md px-1 w-full;
+    @apply mb-2;
+}
+
+/*Estilos aplicados cuando los elementos input y textarea estan enfocados*/
+input:focus, textarea:focus, select:focus {
+    @apply border-blue-900;
+}
+
+/* Estilos aplicados a los elementos h1 */
+h1{
+    @apply text-blue-900 mb-2 text-xl;
+}
+
+/* Estilos aplicados a los elementos label */
+label {
+    @apply text-blue-900;
+}
+
+/* Estilos aplicados a los elementos con la clase .btn-primary */
+.btn-primary {
+    @apply bg-blue-900 text-white px-4 py-1 rounded-md;
+}
+
+/* Establece el ancho de la tabla al 100% del contenedor */
+table.basic {
+    @apply w-full;
+}
+
+/* Establece el fondo de las celdas en el encabezado de la tabla */
+table.basic thead tr td {
+    @apply bg-blue-100
+}
+
+/* Aplica el borde, color y el espaciado a las celdas de la tabla */
+table.basic tr td {
+    @apply border border-blue-200 p-1;
+}
+
+/* Estiliza los enlaces dentro de la tabla */
+table.basic a {
+    @apply bg-blue-900 text-white text-sm py-1 px-2 rounded-md inline-flex mr-1;
+}
+
+/* Botones con relleno y bordes redondeados */
+.btn-red, .btn-default {
+    @apply px-4 py-1 rounded-md;
+}
+
+/* Establece el color del boton y el color del texto */
+.btn-red {
+    @apply bg-red-800 text-white;
+}
+
+/* Establece el fondo y el color del texto */
+.btn-default {
+    @apply bg-gray-500 text-white
+}
