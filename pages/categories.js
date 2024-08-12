@@ -38,16 +38,14 @@ function Categories() {
                 data._id = editedCategory._id;
                 await axios.put('/api/categories', data);
                 Swal.fire({
-                    title: 'Success',
-                    text: 'Categoria actualizada satisfactoriamente!',
+                    title: 'Categoria actualizada satisfactoriamente!',
                     icon: 'success',
                     confirmButtonText: 'OK'
                 });
             } else {
                 await axios.post('/api/categories', data);
                 Swal.fire({
-                    title: 'Success',
-                    text: 'Categoria creada satisfactoriamente!',
+                    title: 'Categoria creada satisfactoriamente!',
                     icon: 'success',
                     confirmButtonText: 'OK'
                 });
@@ -76,13 +74,14 @@ function Categories() {
 
     function deleteCategory(category) {
         Swal.fire({
-            title: 'Are you sure?',
-            text: `Do you want to delete ${category.name}?`,
+            title: 'Estas seguro?',
+            text: `Quieres eliminar ${category.name}?`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Si, eliminar!',
             cancelButtonText: 'Cancelar',
-            confirmButtonColor: '#d55',
+            confirmButtonColor: '#ED1C24',
+            cancelButtonColor: '#6D6E71',
             reverseButtons: true,
         }).then(async (result) => {
             if (result.isConfirmed) {
@@ -90,7 +89,7 @@ function Categories() {
                     const { _id } = category;
                     await axios.delete(`/api/categories?_id=${_id}`);
                     fetchCategories(); // Refresh the categories list
-                    Swal.fire('Eliminar!', 'La categoria ha sido eliminada satisfactoriamente.', 'success');
+                    Swal.fire('La categoria fue eliminada exitosamente', '', 'success');
                 } catch (error) {
                     console.error("Error deleting category:", error);
                     Swal.fire({
@@ -108,7 +107,7 @@ function Categories() {
 
     return (
         <Layout>
-            <h1>Categorias</h1>
+            <h1 className="text-rojoM">Categorias</h1>
             <label>{editedCategory ? `Editar categoria "${editedCategory.name}"` : 'Crear nueva categoria'}</label>
             <form onSubmit={saveCategory} className="flex gap-1">
                 <input 

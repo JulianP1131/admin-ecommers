@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function products() {
+export default function Products() { // Cambiar 'products' a 'Products'
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -16,13 +16,13 @@ export default function products() {
     // Renderizado del componente
     return (
         <Layout>
-            <Link className="bg-blue-900 mt-4 text-white rounded-md py-1 px-2" href={'/products/new'}>
-                Agreagar un producto
+            <Link className="bg-rojoM mt-4 text-white rounded-md py-1 px-2" href={'/products/new'}>
+                Agregar un producto
             </Link>
             <table className="basic mt-5">
                 <thead>
                     <tr>
-                        <td>Nombre del producto</td>
+                        <td className="text-negro">Nombre del producto</td>
                         <td></td>
                     </tr>
                 </thead>

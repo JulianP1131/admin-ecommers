@@ -6,9 +6,9 @@ export default function Home() {
   const {data: session} = useSession();
 
   return <Layout>
-    <div className="text-blue-900 flex justify-between">
+    <div className="text-negro flex justify-between">
       <h2>
-      Hola, <b>{session?.user?.name}</b>
+      Hola, <b className="text-rojoM">{session?.user?.name}</b>
       </h2>
       <div className="flex bg-gray-300 grap-i text-black rounded-lg overflow-hidden">
         <img src={session?.user?.image} alt="" className="w-6 h-6"></img>

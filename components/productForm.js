@@ -14,6 +14,7 @@ export default function ProductForm({
     images: existingImages,
     category:assignedCategory,
 }) {
+    // Definicion de estados locales para el formulario del producto
     const [title, setTitle] = useState(existingTitle || '');
     const [description, setDescription] = useState(existingDescription || '');
     const [category, setCategory] = useState(assignedCategory || '');
@@ -26,71 +27,73 @@ export default function ProductForm({
     const [categories, setCategories] = useState([]);
     const router = useRouter();
 
+    // Efecto para obtener categorias de la API al montar el componente
     useEffect(() => {
         async function fetchCategories() {
             try {
-                const response = await axios.get('/api/categories');
-                setCategories(response.data); // Asegúrate de usar response.data aquí
+                const response = await axios.get('/api/categories'); // Llama a la API para obtener categorias
+                setCategories(response.data); // Almacena las categorias en el estado
             } catch (err) {
-                console.error('Error fetching categories:', err);
-                // Opcional: Puedes manejar el error aquí si es necesario
+                console.error('Error fetching categories:', err); // Maneja errores si la llamada falla
             }
         }
 
-        fetchCategories();
+        fetchCategories(); // Llama a la funcion para obtener categorias
     }, []); // Array vacío para evitar llamadas infinitas a la API
 
+    // Efecto para redirigir a la lista de productos si se ha guardado un producto
     useEffect(() => {
         if (goToProducts) {
-            router.push('/products');
+            router.push('/products'); // Redirige a la pagina de productos
         }
     }, [goToProducts]);
 
+    // Funcion para guardar el producto
     async function saveProduct(ev) {
-        ev.preventDefault();
-        const data = { title, description, price, images, category: category || null };
+        ev.preventDefault(); // Previene el comportamiento por defecto del formulario
+        const data = { title, description, price, images, category: category || null }; // Crea un objeto de datos para enviar 
 
         try {
             if (_id) {
-                await axios.put('/api/products', { ...data, _id });
+                await axios.put('/api/products', { ...data, _id }); // Si existe un ID, actualiza el producto
             } else {
-                await axios.post('/api/products', data);
+                await axios.post('/api/products', data); // Si no, crea un nuevo producto
             }
             Swal.fire({
-                title: 'Success',
-                text: 'Product saved successfully',
+                title: 'Producto guardado exitosamente',
                 icon: 'success',
-                confirmButtonText: 'OK'
+                confirmButtonText: 'OK' // Muestra una alerta de exito
             });
-            setSuccess(true);
-            setTitle('');
-            setDescription('');
-            setPrice('');
-            setGoToProducts(true);
-            setError(null);
+            setSuccess(true); // Marca la operacion como exitosa
+            setTitle(''); // Limpia el campo de titulo
+            setDescription(''); // Limpia el campo de descripcion
+            setPrice(''); // Limpia el campo de precio
+            setGoToProducts(true); // Indica que se debe redirigir
+            setError(null); // Resetea el estado de error
         } catch (err) {
             Swal.fire({
                 title: 'Error',
-                text: 'Error saving product. Please try again',
+                text: 'Error guardando el producto',
                 icon: 'error',
-                confirmButtonText: 'OK'
+                confirmButtonText: 'OK' // Muestra una alerta de error
             });
-            console.error(err);
+            console.error(err); // Imprime el error en consola
         }
-        setSuccess(false);
+        setSuccess(false); // Resetea el estado de exito
     }
-
+ 
+    // Funcion para manejar la subida de imagenes
     async function uploadImages(ev) {
-        const files = ev.target?.files;
-        if (files?.length > 0) {
-            setIsUploading(true);
+        const files = ev.target?.files; // Obtiene archivos seleccionados
+        if (files?.length > 0) { 
+            setIsUploading(true); // Indica que se esta subiendo imagenes
             const data = new FormData();
             for (const file of files) {
-                data.append('file', file);
+                data.append('file', file); // Agrega cada archivo al FormData
             }
             try {
-                const res = await axios.post('/api/upload', data);
-                setImages(oldImages => [...oldImages, ...res.data.links]);
+                const res = await axios.post('/api/upload', data); // Envia la solicitud de subida de imagenes
+                setImages(oldImages => [...oldImages, ...res.data.links]); // Añade las imagenes a la lista existente
             } catch (err) {
                 Swal.fire({
                     title: 'Error',
@@ -104,10 +107,12 @@ export default function ProductForm({
         }
     }
 
+    // Funcion para actualizar el orden de las imagenes
     function updateImagesOrder(images) {
-        setImages(images);
+        setImages(images); // Actualiza el estado con el nuevo orden de imagenes
     }
 
+    // Render del componente
     return (
         <form onSubmit={saveProduct}>
             <label>Nombre del producto</label>

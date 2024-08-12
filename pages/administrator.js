@@ -21,9 +21,10 @@ export default function Administrator() {
             text: "No podrás revertir esto.",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, eliminarlo'
+            confirmButtonColor: '#ED1C24',
+            cancelButtonColor: '#6D6E71',
+            confirmButtonText: 'Sí, eliminarlo',
+            cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
                 axios.delete(`/api/admins/${id}`)
@@ -49,7 +50,7 @@ export default function Administrator() {
 
     return (
         <Layout>
-            <Link className="bg-blue-900 text-white rounded-md py-1 px-2" href={'/administrator/new'}>
+            <Link className="bg-rojoM text-white rounded-md py-1 px-2" href={'/administrator/new'}>
                 Agregar un nuevo administrador
             </Link>
             <table className="basic mt-4">

@@ -1,3 +1,4 @@
+// Importaciones
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
@@ -8,6 +9,7 @@ export default function AdminForm({
     name: existingName,
     email: existingEmail,
 }) {
+    // Se define el estado local para el nombre, correo electronico, errores, exito y el estado de navegacion
     const [name, setName] = useState(existingName || '');
     const [email, setEmail] = useState(existingEmail || '');
     const [error, setError] = useState(null);
@@ -16,43 +18,49 @@ export default function AdminForm({
     const router = useRouter();
 
     useEffect(() => {
+        // Efecto secundario que se ejecutta cuando goToAdmins cambia, redirigiendo a '/administrador'
         if (goToAdmins) {
-            router.push('/administrator');  // Cambia esto según la ruta que deseas
+            router.push('/administrator');   // Dependencia en goToAdmins
         }
-    }, [goToAdmins]);
+    }, [goToAdmins, router]); // Añadir 'router' a la lista de dependencias
 
     async function saveAdmin(ev) {
-        ev.preventDefault();
-        const data = { name, email };
+        // Funcion que maneja el envio del formulario para guardar o actualizar un administrador
+        ev.preventDefault(); // Previene el comportamiento por defecto del formulario (recarga de pagina)
+        const data = { name, email }; // Crea un objeto con los datos del administrador
 
         try {
-            if (_id) {
-                await axios.put('/api/admins', { ...data, _id });
+            // Si se proporciona _id, actualiza el administrador existente; de lo contrario, crea uno nuevo
+            if (_id) { 
+                await axios.put('/api/admins', { ...data, _id }); // Solicitud PUT para actualizar el administrador
             } else {
-                await axios.post('/api/admins', data);
+                await axios.post('/api/admins', data); // Solicitud POST para crear un nuevo administrador
             }
+            // Muestra una alerta de exito si la operacion se realizo correctamente
             Swal.fire({
                 title: 'Administrador creado con exito!',
                 icon: 'success',
                 confirmButtonText: 'OK'
             });
-            setSuccess(true);
-            setName('');
-            setEmail('');
-            setGoToAdmins(true);
-            setError(null);
+            setSuccess(true); // Actualiza el estado de exito
+            setName(''); // Resetea el campo de nombre
+            setEmail(''); // Resetea el campo de email
+            setGoToAdmins(true); // Indica que se debe redirigir a la lista de administradores
+            setError(null); // Resetea el estado de error
         } catch (err) {
+            // Muestra un mensaje de error si ocurre un problema al guardar
             Swal.fire({
                 title: 'Error',
                 text: 'Error guardando el administrador. Intente nuevamente',
                 icon: 'error',
                 confirmButtonText: 'OK'
             });
-            console.error(err);
+            console.error(err); // Registra el error en la consola
         }
-        setSuccess(false);
+        setSuccess(false); // Resetea el estado de exito
     }
-
+ 
+    // Retorna el JSX del formulario con campos y un boton de envio
     return (
         <form onSubmit={saveAdmin}>
             <label>Nombre del administrador</label>
