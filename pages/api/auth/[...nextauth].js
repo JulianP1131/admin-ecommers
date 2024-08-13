@@ -24,7 +24,7 @@ export const authOptions = {
       return session;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET, // Asegúrate de tener esto en tu archivo .env
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 
