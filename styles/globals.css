@@ -68,3 +68,53 @@ table.basic a {
 .btn-default {
     @apply bg-gray-400 text-white
 }
+
+
+/* Estilos aplicados al contenedor de la página */
+.layout-container {
+    background-color: #3C0000; /* Color de fondo */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Estilos aplicados al contenedor del login */
+.login-container {
+    text-align: center; /* Centra el texto dentro del contenedor */
+    width: 100%;
+}
+
+/* Estilos aplicados al logo */
+.logo {
+    width: 250px;
+    height: 200px;
+    margin-bottom: 20px; /* Espacio entre el logo y el botón */
+    display: block; /* Asegura que el logo sea un bloque de nivel de bloque */
+    margin-left: auto; /* Centra horizontalmente */
+    margin-right: auto; /* Centra horizontalmente */
+}
+
+/* Estilos aplicados al botón de login */
+.login-button {
+    background-color: #FFFFFF; /* Color de fondo del botón */
+    color: #000000; /* Color del texto del botón */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    border-radius: 8px; /* Bordes redondeados del botón */
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif; /* Fuente del botón */
+    font-weight: 500;
+    font-size: 1rem; /* Tamaño de fuente del botón */
+    transition: background-color 0.3s, color 0.3s; /* Transiciones suaves para cambios de color */
+    display: inline-block; /* Asegura que el botón se alinee correctamente */
+}
+
+.login-button:hover {
+    background-color: #BF123A; /* Color de fondo en hover */
+    color: #FFFFFF; /* Color del texto en hover */
+}
+
+  
