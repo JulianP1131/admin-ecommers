@@ -33,7 +33,7 @@ export default function Nav() {
     return (
         <aside className="text-white p-4 pr-0">
             <Link href={'/'} className="flex gap-1 mb-4 mr-4">
-                <img src="/imgs/Logo.jpg" alt="Logo ferreteria Roma" className="w-25 h-21" />
+                <img src="/img/Logo.png" alt="Logo ferreteria Roma" className="w-30 h-20 ml-2 mr-2" />
             </Link>
             <nav className="flex flex-col gap-2">
                 <Link href={'/'} className={pathname === '/' ? activeLink : inactiveLink}>
