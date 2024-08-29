@@ -40,7 +40,8 @@ table.basic {
 }
 
 /* Establece el fondo de las celdas en el encabezado de la tabla */
-table.basic thead tr td {
+table.basic thead tr td, 
+table.basic thead tr th {
     @apply bg-gray-300
 }
 
