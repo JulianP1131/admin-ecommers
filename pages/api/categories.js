@@ -1,22 +1,9 @@
 import { mongooseConnect } from "@/lib/mongoose";
 import { Category } from "@/models/Category";
-import { isAdminRequest } from "@/pages/api/auth/[...nextauth]";
 
 export default async function handle(req, res) {
   const { method } = req;
   await mongooseConnect();
-
-  try {
-    await isAdminRequest(req, res);
-  } catch (error) {
-    // Manejar errores de permisos
-    if (error.message === 'Forbidden') {
-      return; // La función isAdminRequest ya ha enviado una respuesta
-    }
-    // Otros errores
-    res.status(500).json({ error: 'Internal Server Error' });
-    return;
-  }
 
   if (method === 'GET') {
     try {
