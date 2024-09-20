@@ -22,19 +22,19 @@ export default async function handle(req, res) {
                 }
 
             case 'POST':
-                const { title, description, images } = req.body;
-                if (!title || !description) {
-                    return res.status(400).json({ error: 'Title and description are required' });
+                const { title, entrance, description, images } = req.body;
+                if (!title || !entrance || !description ) {
+                    return res.status(400).json({ error: 'Title, entrace and description are required' });
                 }
-                const newsDoc = await News.create({ title, description, images });
+                const newsDoc = await News.create({ title, entrance, description, images });
                 return res.status(201).json(newsDoc);
 
             case 'PUT':
-                const { _id, title: updatedTitle, description: updatedDescription, images: updatedImages } = req.body;
-                if (!_id || !updatedTitle || !updatedDescription) {
+                const { _id, title: updatedTitle, entrance: updateEntrance, description: updatedDescription, images: updatedImages } = req.body;
+                if (!_id || !updatedTitle || !updateEntrance || !updatedDescription) {
                     return res.status(400).json({ error: 'ID, title, and description are required' });
                 }
-                const updatedNews = await News.findByIdAndUpdate(_id, { title: updatedTitle, description: updatedDescription, images: updatedImages }, { new: true });
+                const updatedNews = await News.findByIdAndUpdate(_id, { title: updatedTitle, entrance: updateEntrance, description: updatedDescription, images: updatedImages }, { new: true });
                 if (!updatedNews) {
                     return res.status(404).json({ error: 'News not found' });
                 }

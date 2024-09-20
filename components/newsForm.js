@@ -9,13 +9,13 @@ import Swal from "sweetalert2";
 export default function NewsForm({
     _id,
     title: existingTitle,
+    entrance: existingEntrance,
     description: existingDescription,
-    price: existingPrice,
     images: existingImages,
-    category:assignedCategory,
 }) {
-    // Definicion de estados locales para el formulario del producto
+    // Definicion de estados locales para el formulario de la noticia
     const [title, setTitle] = useState(existingTitle || '');
+    const [entrance, setEntrance] = useState(existingEntrance || '');
     const [description, setDescription] = useState(existingDescription || '');
     const [images, setImages] = useState(existingImages || []);
     const [error, setError] = useState(null);
@@ -24,23 +24,23 @@ export default function NewsForm({
     const [isUploading, setIsUploading] = useState(false);
     const router = useRouter();
 
-    // Efecto para redirigir a la lista de productos si se ha guardado un producto
+    // Efecto para redirigir a la lista de noticias si se ha guardado un noticia
     useEffect(() => {
         if (goToNews) {
-            router.push('/news'); // Redirige a la pagina de productos
+            router.push('/news'); // Redirige a la pagina de noticia
         }
     }, [goToNews]);
 
-    // Funcion para guardar el producto
+    // Funcion para guardar la noticia
     async function saveNews(ev) {
         ev.preventDefault(); // Previene el comportamiento por defecto del formulario
-        const data = { title, description, images }; // Crea un objeto de datos para enviar 
+        const data = { title, entrance, description, images }; // Crea un objeto de datos para enviar 
 
         try {
             if (_id) {
                 await axios.put('/api/news', { ...data, _id }); // Si existe un ID, actualiza el producto
             } else {
-                await axios.post('/api/news', data); // Si no, crea un nuevo producto
+                await axios.post('/api/news', data); // Si no, crea una nueva noticia
             }
             Swal.fire({
                 title: 'Notica guardada exitosamente',
@@ -103,6 +103,13 @@ export default function NewsForm({
                 placeholder="Titulo de la noticia" 
                 value={title} 
                 onChange={ev => setTitle(ev.target.value)} 
+            />
+            <label>Entradilla de la noticia</label>
+            <input 
+                type="text"
+                placeholder="Entradilla de la noticia"
+                value={entrance}
+                onChange={ev => setEntrance(ev.target.value)}
             />
             <label>Descripción</label>
             <textarea 
