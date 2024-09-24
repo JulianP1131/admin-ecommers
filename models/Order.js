@@ -11,6 +11,9 @@ const LineItemSchema = new Schema({
 const OrderSchema = new Schema({
     line_items: [LineItemSchema],
     name: { type: String, required: true },
+    selectedDocumentType: { type: String, required: true },
+    documentNumber: { type: String, required: true },
+    selectedRegimen: { type: String, required: true },
     email: { type: String, required: true },
     phone: { type: String, required: true },
     city: { type: String, required: true },

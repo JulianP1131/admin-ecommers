@@ -32,7 +32,9 @@ export default function OrdersPage() {
                             <tr key={order._id}>
                                 <td>{new Date(order.createdAt).toLocaleDateString()}</td>
                                 <td>
-                                    <text>Nombre: {order.name}</text><br />
+                                    <text>Nombre o razon social: {order.name}</text><br />
+                                    <text>Documento: {order.selectedDocumentType}. {order.documentNumber}</text><br />
+                                    <text>Regimen Contributivo: {order.selectedRegimen}</text><br />
                                     <text>Email: {order.email}</text><br /> 
                                     <text>Numero telefonico: {order.phone}</text><br />
                                     <text>Ciudad: {order.city}</text><br />
